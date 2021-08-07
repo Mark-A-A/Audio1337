@@ -1,0 +1,12 @@
+.data-chart-section {
+  ul {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  
+    .detail-item {
+      margin: 3px 0;
+    }
+  }
+}
