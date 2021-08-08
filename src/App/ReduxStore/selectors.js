@@ -1,4 +1,4 @@
 
-export const doSomething = (state) => {
-  return state
+export const getListOfEpisodesFromStore = (state) => {
+  return state?.audio?.episodes || []
 }

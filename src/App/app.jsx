@@ -6,15 +6,7 @@ import Navigation from "./Router/Navigation";
 
 import './styles/style.scss'
 
-const audio = {
-  episodes: {
-    fetching: null,
-    error: null,
-    list: [],
-  }
-}
-const initialState = { audio }; 
-const store = configureStore(initialState);
+const store = configureStore();
 
 const App = () => {
   return (

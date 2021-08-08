@@ -12,9 +12,9 @@ export const NavBar = () => {
         <ul className="navbar-items-list">
           <li id="item-logo">
             <Link to="/">
-              <logo>
-                <img src="" />
-              </logo>
+              <div className="logo">
+                <img src="./public/assets/music-logo.png"/>
+              </div>
             </Link>
           </li>
           <li id='item-title'>

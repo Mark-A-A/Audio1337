@@ -32,8 +32,8 @@ nav {
     }
 
     li#item-logo {
-      flex: 0 1 15%;
-      logo {
+      flex: 0 1 auto;
+      .logo {
         img {
           width: 50px;
         }
@@ -44,7 +44,7 @@ nav {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1 1;
+      flex: 1 1 auto;
 
       h2,
       h3,
