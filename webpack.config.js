@@ -114,10 +114,17 @@ module.exports = {
     compress: true,
     port: 9000,
     proxy: {
-      // '/audio': 'http://localhost:1337',
-      '/audio': {
+      '/audioData/episodes': {
         target: 'http://localhost:1337',
-        pathRewrite: { '^/audio': '' },
+        pathRewrite: { '^/audioData': '' },
+      },
+      '/episode/audioFile': {
+        target: 'http://localhost:1337',
+        pathRewrite: { '^/episode/audioFile': '' },
+      },
+      'episodes/assets/images': {
+        target: 'http://localhost:1337',
+        pathRewrite: { '^episodes/assets/images': '/images' },
       }
     },
   },

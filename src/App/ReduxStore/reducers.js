@@ -1,3 +1,4 @@
+import { connectRouter } from 'connected-react-router'
 import { combineReducers } from 'redux';
 import { ActionTypes } from 'ReduxStore/ActionTypes'
 
@@ -46,4 +47,9 @@ const audioReducers = {
   episodes: episodesReducer
 }
 
-export default combineReducers(audioReducers);
+const createRootReducer = (history) => combineReducers({
+  router: connectRouter(history),
+  ...audioReducers
+})
+
+export default createRootReducer

@@ -18,9 +18,7 @@ export const NavBar = () => {
             </Link>
           </li>
           <li id='item-title'>
-            <Typography variant="h4">
-            Audio 1337
-            </Typography>
+            <Typography variant="h4">Cast Audio</Typography>
           </li>
         </ul>
       </AppBar>
