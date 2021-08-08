@@ -1,0 +1,10 @@
+ul.podcast-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  .podcast-list-item {
+    margin: 10px 0;
+    margin-right: 200px;
+    padding: 0;
+  }
+}

@@ -12,7 +12,9 @@ const App = () => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Navigation/>
+        <div className="app-root">
+          <Navigation/>
+        </div>
       </ConnectedRouter>
     </Provider>
   )
