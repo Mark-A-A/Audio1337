@@ -1,0 +1,28 @@
+@import '../../styles/normalize.scss';
+@import '../../styles/variables.scss';
+
+section.audio-player-section {
+  background-color: $light-gray;
+  .MuiPaper-root {
+    background-color: inherit;
+    
+  }
+
+  h4.podcast-header-length {
+    margin: 0;
+    padding: 1em;
+    padding-top: .5em;
+  }
+
+  figure#audio-player-box {
+    margin: 0;
+    padding: 1em;
+
+    button {
+      width: 60px;
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+  }
+}

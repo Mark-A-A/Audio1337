@@ -6,6 +6,7 @@ import { getPodcastEpisode } from 'ReduxStore/selectors';
 export const usePodCastEpisode = (id) => {
   const { name, markers, audio: path } = useSelector(getPodcastEpisode)(id);
 
+  const [loading, setLoading] = useState(true)
   const [audioFileURL, setAudioFileURL] = useState(null)
   const [audioFileFetched, setAudioFileFetched] = useState(false)
 
@@ -17,12 +18,14 @@ export const usePodCastEpisode = (id) => {
 
       if (path && url) {
         setAudioFileFetched(true);
-        setAudioFileURL(url)
+        setAudioFileURL(url),
+        setLoading(false);
       }
     }
   }, [path, audioFileURL, audioFileFetched])
 
   return {
+    loading,
     name,
     markers,
     audioFileURL
