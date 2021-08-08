@@ -1,14 +1,23 @@
 import React from "react";
 
-import { useGetEpisodesList} from './Hooks/useGetEpisodesList'
+import { Page } from 'Components/Page/Page'
+
+import { useGetEpisodesList } from './Hooks/useGetEpisodesList'
+import { PodcastList } from './PodcastList'
 
 export function Home() {
   const {
-    fetching,
+    loading,
     episodesList,
     error
   } = useGetEpisodesList();
 
-  return <h2>Home</h2>;
+  return (
+    <>
+      <Page pageName={"podcast-page"} title={`Podcasts Available`} containerSize="md">
+        <PodcastList loading={loading} podcasts={episodesList} />
+      </Page>
+    </>
+  )
 }
 

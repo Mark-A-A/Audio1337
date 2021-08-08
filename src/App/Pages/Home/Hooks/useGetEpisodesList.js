@@ -8,14 +8,14 @@ export const useGetEpisodesList = () => {
   const dispatch = useDispatch();
   const episodes = useSelector(getListOfEpisodesFromStore);
 
-  const { fetchings, list, error} = episodes
+  const { fetching: loading, list, error} = episodes;
   
   useEffect(() => {
     dispatch(getEpisodesList())
   }, [])
 
   return {
-    fetchings, 
+    loading,
     episodesList: list,
     error
   }
