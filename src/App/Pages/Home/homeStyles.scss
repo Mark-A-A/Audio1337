@@ -1,10 +1,25 @@
-ul.podcast-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  .podcast-list-item {
-    margin: 10px 0;
-    margin-right: 200px;
+@import '../../styles/normalize.scss';
+@import '../../styles/variables.scss';
+
+.podcast-page {
+  ul.podcast-list {
+    list-style: none;
     padding: 0;
+    margin: 0;
+
+    .podcast-list-item {
+      margin: 20px 0;
+      padding: 0;
+
+      .podcast-episode-link {
+        a {
+          text-decoration: none;
+          text-align: center;
+          .MuiCardContent-root {
+            background-color: $light-gray;
+          }
+        }
+      }
+    }
   }
 }

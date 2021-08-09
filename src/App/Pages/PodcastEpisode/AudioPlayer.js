@@ -5,6 +5,7 @@ import PauseCircleOutlineOutlinedIcon from '@material-ui/icons/PauseCircleOutlin
 import Slider from '@material-ui/core/Slider';
 import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@material-ui/core/IconButton';
 
 import { useAudioPlayer } from './Hooks/useAudioPlayer';
 import { Markers } from './Markers';
@@ -18,6 +19,7 @@ export function AudioPlayer(props) {
     loading,
     playing,
     handlePlayPauseButtonClick,
+    handleMouseChange,
     handleStop,
     duration,
     minTime,
@@ -27,7 +29,7 @@ export function AudioPlayer(props) {
 
 
   const setValuetext = (value) => {
-    return `${value}`;
+    return `${Math.round(value)}`;
   }
 
   return (
@@ -47,20 +49,23 @@ export function AudioPlayer(props) {
                     aria-labelledby="discrete-slider-custom"
                     step={1}
                     valueLabelDisplay="auto"
+                    onChange={handleMouseChange}
                     // marks={marks}
-                    value={currentTime}
+                    value={Number(currentTime.toFixed(1))}
                     min={minTime}
                     max={maxTime}
                   />
-                  <button onClick={handlePlayPauseButtonClick}>
-                    {playing
+
+                  <IconButton onClick={handlePlayPauseButtonClick} aria-label="play/pause">
+                    {
+                      playing
                       ? <PauseCircleOutlineOutlinedIcon fontSize="large" />
                       : <PlayCircleOutlineIcon fontSize="large" />
                     }
-                  </button>
-                  <button onClick={handleStop}>
+                  </IconButton>
+                  <IconButton onClick={handleStop} aria-label="stop">
                     <StopOutlinedIcon fontSize="large" />
-                  </button>
+                  </IconButton>
                   <figcaption><Markers markers={markers} /></figcaption>
                 </figure>
               </Card>
