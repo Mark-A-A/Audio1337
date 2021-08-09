@@ -1,28 +1,35 @@
-// @import '../../styles/normalize.scss';
+@import '../../styles/normalize.scss';
 @import '../../styles/variables.scss';
 
 section.audio-player-section {
   background-color: $light-gray;
   .MuiPaper-root {
     background-color: inherit;
-    
   }
 
   h4.podcast-header-length {
     margin: 0;
-    padding: 1em;
-    padding-top: .5em;
+    padding: 0.5em 1em;
   }
 
   figure#audio-player-box {
     margin: 0;
     padding: 1em;
 
+    #slider-wrapper {
+      width: 95%;
+      margin: 0 auto;
+    }
+
     button {
       width: 60px;
       padding: 0;
       border: 0;
       background: none;
+    }
+    figcaption.markers-wrapper {
+      margin-top: 0.5em;
+      height: 100px;
     }
   }
 }

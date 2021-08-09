@@ -122,9 +122,9 @@ module.exports = {
         target: 'http://localhost:1337',
         pathRewrite: { '^/episode/audioFile': '' },
       },
-      'episodes/assets/images': {
+      '/images': {
         target: 'http://localhost:1337',
-        pathRewrite: { '^episodes/assets/images': '/images' },
+        pathRewrite: { '^/images': '/images' },
       }
     },
   },

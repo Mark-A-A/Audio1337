@@ -1,13 +1,25 @@
 import React, { useEffect, useState, useRef } from "react";
 import moment from 'moment';
 
+import { useMarkers } from "./useMarkers";
+
 export const useAudioPlayer = ({ filePath, markers = [] }) => {
   const [duration, setDuration] = useState("--:--");
   const [currentTime, setCurrentTime] = useState(0);
-  const [minTime, setMinTime] = useState(null);
+  const [playing, setPlaying] = useState(false);
   const [maxTime, setMaxTime] = useState(null);
-  const [playing, setPlaying] = useState();
+  const minTime = 0;
 
+  const marks = [
+    {
+      value: minTime,
+      label: `00:00`
+    },
+    {
+      value: maxTime,
+      label: `${duration}`
+    },
+  ]
   const audioElement = new Audio(filePath);
   const audioElementRef = useRef(audioElement);
 
@@ -27,33 +39,6 @@ export const useAudioPlayer = ({ filePath, markers = [] }) => {
       setCurrentTime(0);
     }
   }
-
-  const handlePlayPauseButtonClick = (e) => {
-    if (playing) {
-      controls.pause()
-    } else {
-      controls.play();
-    }
-  };
-
-  const handleMouseChange = (e, value) => {
-    const { type } = e;
-
-    if (type === 'mouseDown') {
-      controls.pause();
-    }
-
-    if (type === 'mousemove') {
-      controls.pause();
-      audioElementRef.current.currentTime = value
-      controls.play();
-    }
-  }
-
-  const handleStop = (e) => {
-    controls.stop()
-  };
-
 
   useEffect(() => {
     const onLoadedMetadata = (e) => {
@@ -75,6 +60,37 @@ export const useAudioPlayer = ({ filePath, markers = [] }) => {
     }
   }, []);
 
+  const { markerToDisplay } = useMarkers(markers, maxTime, currentTime);
+
+  const handlePlayPauseButtonClick = (e) => {
+    if (playing) {
+      controls.pause()
+    } else {
+      controls.play();
+    }
+  };
+
+  const handleMouseChange = (e, value) => {
+    const { type } = e;
+
+    const {type: markerType} = markerToDisplay
+
+    if (type === 'mouseDown') {
+      controls.pause();
+    }
+
+    if (type === 'mousemove') {
+      controls.pause();
+      audioElementRef.current.currentTime = value
+      controls.play();
+    }
+  }
+
+  const handleStop = (e) => {
+    controls.stop()
+  };
+
+
   return {
     playing,
     handlePlayPauseButtonClick,
@@ -84,5 +100,7 @@ export const useAudioPlayer = ({ filePath, markers = [] }) => {
     minTime,
     maxTime,
     currentTime,
+    marks,
+    markerToDisplay
   }
 }

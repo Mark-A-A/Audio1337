@@ -1,0 +1,39 @@
+figcaption.markers-wrapper {
+  .marker-content {
+    h5 {
+      margin: 0 1em;
+    }
+  }
+  .marker-ad {
+    a {
+      background-color: white;
+      text-decoration: none;
+      .ad-header {
+        text-decoration: underline;
+        margin: 5px 0;
+      }
+      .ad-disclosure {
+        text-decoration: none;
+        font-size: 10px;
+      }
+    }
+  }
+  .markers-section {
+    height: 100%;
+    .marker-content {
+      height: 100%;
+      .marker-image {
+        height: 100%;
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .marker-text {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}

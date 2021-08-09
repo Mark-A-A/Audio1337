@@ -1,11 +1,12 @@
 import React from "react";
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopOutlinedIcon from '@material-ui/icons/StopOutlined';
-import PauseCircleOutlineOutlinedIcon from '@material-ui/icons/PauseCircleOutlineOutlined';
+import PauseIcon from '@material-ui/icons/Pause';
 import Slider from '@material-ui/core/Slider';
 import Card from '@material-ui/core/Card';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import { useAudioPlayer } from './Hooks/useAudioPlayer';
 import { Markers } from './Markers';
@@ -25,6 +26,8 @@ export function AudioPlayer(props) {
     minTime,
     maxTime,
     currentTime,
+    marks,
+    markerToDisplay
   } = useAudioPlayer({ filePath, markers });
 
 
@@ -42,34 +45,39 @@ export function AudioPlayer(props) {
               <Card className="audio-player-card" variant="outlined">
                 <h4 className="podcast-header-length">Length: {duration}</h4>
                 <figure id="audio-player-box">
-                  <Slider
-                    defaultValue={0}
-                    valueLabelDisplay="on"
-                    getAriaValueText={setValuetext}
-                    aria-labelledby="discrete-slider-custom"
-                    step={1}
-                    valueLabelDisplay="auto"
-                    onChange={handleMouseChange}
-                    // marks={marks}
-                    value={Number(currentTime.toFixed(1))}
-                    min={minTime}
-                    max={maxTime}
-                  />
+                  <div id="slider-wrapper">
+                    <Slider
+                      defaultValue={0}
+                      valueLabelDisplay="on"
+                      getAriaValueText={setValuetext}
+                      aria-labelledby="discrete-slider-custom"
+                      step={1}
+                      valueLabelDisplay="auto"
+                      onChange={handleMouseChange}
+                      marks={marks}
+                      value={Number(currentTime.toFixed(1))}
+                      min={minTime}
+                      max={maxTime}
+                    />
+                  </div>
 
+                  <ButtonGroup>
                   <IconButton onClick={handlePlayPauseButtonClick} aria-label="play/pause">
                     {
                       playing
-                      ? <PauseCircleOutlineOutlinedIcon fontSize="large" />
-                      : <PlayCircleOutlineIcon fontSize="large" />
+                      ? <PauseIcon fontSize="large" />
+                      : <PlayArrowIcon fontSize="large" />
                     }
                   </IconButton>
                   <IconButton onClick={handleStop} aria-label="stop">
                     <StopOutlinedIcon fontSize="large" />
                   </IconButton>
-                  <figcaption><Markers markers={markers} /></figcaption>
+                  </ButtonGroup>
+                  <figcaption className="markers-wrapper">
+                    <Markers markerToDisplay={markerToDisplay} value={currentTime} />
+                  </figcaption>
                 </figure>
               </Card>
-
             )
           )
       }
