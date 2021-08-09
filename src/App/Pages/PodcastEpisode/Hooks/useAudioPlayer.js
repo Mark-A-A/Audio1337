@@ -36,6 +36,20 @@ export const useAudioPlayer = ({ filePath, markers = [] }) => {
     }
   };
 
+  const handleMouseChange = (e, value) => {
+    const { type } = e;
+
+    if (type === 'mouseDown') {
+      controls.pause();
+    }
+
+    if (type === 'mousemove') {
+      controls.pause();
+      audioElementRef.current.currentTime = value
+      controls.play();
+    }
+  }
+
   const handleStop = (e) => {
     controls.stop()
   };
@@ -43,24 +57,29 @@ export const useAudioPlayer = ({ filePath, markers = [] }) => {
 
   useEffect(() => {
     const onLoadedMetadata = (e) => {
-        const { duration } = audioElementRef.current;
-        const durationParsed = moment("1900-01-01 00:00:00").add(duration, 'seconds').format("HH:mm:ss");
-        setDuration(durationParsed);
-        setMaxTime(duration);
+      const { duration } = audioElementRef.current;
+      const durationParsed = moment("1900-01-01 00:00:00").add(duration, 'seconds').format("HH:mm:ss");
+      setDuration(durationParsed);
+      setMaxTime(duration);
     }
 
     const onTimeUpdate = (e) => {
       setCurrentTime(audioElementRef.current.currentTime)
     }
-    
+
     audioElementRef.current.onloadedmetadata = onLoadedMetadata
     audioElementRef.current.ontimeupdate = onTimeUpdate;
+
+    return () => {
+      controls.stop();
+    }
   }, []);
 
   return {
     playing,
     handlePlayPauseButtonClick,
     handleStop,
+    handleMouseChange,
     duration,
     minTime,
     maxTime,
