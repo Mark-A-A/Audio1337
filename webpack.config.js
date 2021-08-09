@@ -124,7 +124,6 @@ module.exports = {
       },
       '/images': {
         target: 'http://localhost:1337',
-        pathRewrite: { '^/images': '/images' },
       }
     },
   },
