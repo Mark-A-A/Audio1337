@@ -33,6 +33,7 @@ module.exports = {
         exclude: [
           /node_modules/,
           /requirements/,
+          /project/,
         ],
         use: {
           loader: 'babel-loader',
